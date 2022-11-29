@@ -7,14 +7,15 @@ using namespace std;
 int main() {
 	char uIn = ' ';
 	stack<int> rpnS = stack<int>();
-	queue<int> rpnQ = queue<int>();
+	queue<char> rpnQ = queue<char>();
 
 	while (uIn != 'l') {
-		cout << "Input a single integer or an operation (+ - * /)" << endl;
+		cout << "\n\nInput a single integer or an operation (+ - * /)" << endl;
+		uIn = ' ';
 		while (tolower(uIn) != 'q') {
 			cin >> uIn;
 			if (isdigit(uIn)) {
-				rpnS.push(uIn);
+				rpnS.push(((int)uIn) - 48);
 				rpnQ.push(uIn);
 			}
 
@@ -43,10 +44,11 @@ int main() {
 
 		while (!rpnQ.empty()) {
 			cout << rpnQ.front() << " ";
+			rpnQ.pop();
 		}
-		cout << rpnS.top();
+		cout << rpnS.top() << endl;
 
 		rpnS = stack<int>();
-		rpnQ = queue<int>();
+		rpnQ = queue<char>();
 	}
 }
