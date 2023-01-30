@@ -15,25 +15,41 @@ int main() {
 		while (tolower(uIn) != 'q') {
 			cin >> uIn;
 			if (isdigit(uIn)) {
-				rpnS.push(((int)uIn) - 48);
+				rpnS.push((int)(uIn - 48));
 				rpnQ.push(uIn);
 			}
-
+			int a = 0, b = 0;
 			switch (uIn) {
 			case '+':
-				rpnS.push(rpnS.top() + rpnS.top());
+				a = rpnS.top();
+				rpnS.pop();
+				b = rpnS.top();
+				rpnS.pop();
+				rpnS.push(a + b);
 				rpnQ.push(uIn);
 				break;
 			case '-':
-				rpnS.push(rpnS.top() - rpnS.top());
+				a = rpnS.top();
+				rpnS.pop();
+				b = rpnS.top();
+				rpnS.pop();
+				rpnS.push(b - a);
 				rpnQ.push(uIn);
 				break;
 			case '*':
-				rpnS.push(rpnS.top() * rpnS.top());
+				a = rpnS.top();
+				rpnS.pop();
+				b = rpnS.top();
+				rpnS.pop();
+				rpnS.push(a * b);
 				rpnQ.push(uIn);
 				break;
 			case '/':
-				rpnS.push(rpnS.top() / rpnS.top());
+				a = rpnS.top();
+				rpnS.pop();
+				b = rpnS.top();
+				rpnS.pop();
+				rpnS.push(b / a);
 				rpnQ.push(uIn);
 				break;
 			case 'l':
